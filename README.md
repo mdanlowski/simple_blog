@@ -1,2 +1,2 @@
 # simple_blog
-Ruby on rails Exercise (standalone repo)
+Ruby on Rails Exercise (standalone repo)
