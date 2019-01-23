@@ -1,0 +1,26 @@
+<nav class="global-nav nav-widescreen">
+  <!-- <div id="nav-widescreen"> -->
+	<ul class="to-left nav-list">
+		<li class="nav-item"><%= link_to_unless_current "Home", root_path %></li>
+		<li class="nav-item featured"><%= link_to_unless_current "Featured Posts", posts_featured_path %></li>
+		<li class="nav-item"><%= link_to_unless_current "About this Blog", pages_about_path %></li>
+		<li class="nav-item"><%= link_to_unless_current "Contact Me", pages_contact_path %> </li>
+
+	</ul>
+		<!-- <div class="to-right"> -->
+			<ul class="to-right nav-list">
+			  <% if current_user %>
+			  	<span class="nav-username">
+			  		Logged in as: <em class="index-username"><%= current_user.username %></em>
+			  	</span>
+				<li class="nav-item nav-special"><%= link_to_unless_current "New Post", { controller: 'posts', action: 'new' } %></li>
+				<li class="nav-item"><%= link_to_unless_current "Dashboard", { controller: 'users', action: 'show' } %></li>
+				<li class="nav-item"><%= link_to_unless_current "Logout", sessions_destroy_path, method: :delete %></li>
+			  <% else %>
+				<li class="nav-item"><%= link_to_unless_current "Login", { controller: 'sessions', action: 'new' } %></li>
+				<li class="nav-item"><%= link_to_unless_current "Join as Author", { controller: 'users', action: 'new' } %></li>
+			  <% end -%>
+			</ul>
+		<!-- </div> -->
+  <!-- </div> -->
+</nav>

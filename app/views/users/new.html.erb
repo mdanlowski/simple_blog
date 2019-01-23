@@ -1,0 +1,45 @@
+<div class="form-wrapper form-backgound">
+	<h1>Join Us</h1>
+	<h3 class="text-center">And together we can rule The Galaxy...</h3>
+
+	<div class="errors">
+		<% if flash[:register_errors] %>
+		Please correct following:
+		<ul>
+			<% flash[:register_errors].each do |e| %>
+				<li> <%= e %> </li>
+			<% end %>
+		</ul>
+		<% end %>
+	</div>
+
+	<%= form_for :user, url: { action: 'create' } do |u| %>
+		<div class="form-register">
+			<%= u.label :email %>
+			<%= u.email_field :email, :autofocus => true, placeholder: 'Your email address (optional)', class: "form-control top-form-field" %>
+		
+		
+			<%= u.label :username %>
+			<%= u.text_field :username, placeholder: 'Username - used for authentication', class: "form-control middle-form-field" %>
+		
+		
+			<%= u.label :password %>
+			<%= u.password_field :password, placeholder: 'Choose a password (min. 6 characters)', class: "middle-form-field form-control" %>
+		
+		
+			<%= u.label :password_confirmation %>
+			<%= u.password_field :password_confirmation, placeholder: 'Retype the password', class: "form-control bottom-form-field" %>
+
+		<div class="form-finalize text-center">
+			<p>
+				<%= u.submit 'Register', class: "btn-anim btn-mid-lite anim-span" %>
+			</p>
+
+		</div>
+		</div>
+
+	<% end %>
+</div>
+
+
+ 

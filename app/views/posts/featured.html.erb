@@ -1,0 +1,75 @@
+<!-- @TODO turn into partial -->
+
+<% def rate_post(id)
+	if id > 0
+		return 'up'
+	elsif id == 0
+		return 'neutral'
+	else
+		return 'down'
+	end
+end
+%>
+<div class="WRAPPER">
+	<!-- <h5 class="text-center test"></h5> -->
+	<!-- <h1 class="text-center test">👽</h1> -->
+
+	<% @posts.each do |p| %>
+	<!-- <hr /> -->
+		<div class="post index-post">
+			<div class="titlebar">
+				<h3 class="posttitle"><%= link_to p.title, '/posts/'+p.id.to_s %></h3>
+				
+				<div class="postvotes text-right">
+					<% if current_user %>
+							<% voted = current_user.voted_for.include?(p.id) %>
+							<% if voted %>
+								<p class="thanksforvote">Thank you for your vote</p>
+							<% end %>
+
+						<a rel="nofollow" href="/posts/process_vote/<%= p.id.to_s %>/1" data-method="patch" >
+							<button class="btn-anim btn-voteup btn-mid <%= voted ? 'votingdisabled' : '' %>">&#128402;</button>
+						</a>
+						<a rel="nofollow" href="/posts/process_vote/<%= p.id.to_s %>/-1" data-method="patch" >
+							<button class="btn-anim btn-votedown btn-mid <%= voted ? 'votingdisabled' : '' %>">&#128403;</button>
+						</a>
+					<% else %>
+						<p class="registertovote">Register to rate posts</p>
+					<% end %>
+					<div class="postrating <%= rate_post(p.vote_points) %>">
+						<%= p.vote_points.to_s %>
+					</div>
+				</div>
+
+			</div>
+			<!-- @TODO jakiś lepszy sposób na ograniczanie treści posta na głównej -->
+
+			<p><%= (p.body.length > 400) ? simple_format(p.body)[0,400]+'...'+simple_format('<em>(click on the title or below for full content)</em>') : simple_format(p.body) %>
+			</p>
+
+			<sub><a class="" href="/posts/<%= p.id %>">See whole post / details...</a></sub>
+
+			<div class="text-right">
+				Written by: 
+				<div class="index-username-background text-left">
+					<% u = User.find(p.user_id) %>
+					<% if u.photo.attached? %>
+						<%= image_tag u.photo, class: "img img-fluid rounded-circle index-thumbnail" %>
+					<% else %>
+						<img class="index-thumbnail" src="<%= image_path('user-icon.png') %>">
+					<% end %>
+					<span class="index-username"><%= u.username %></span>
+				</div>
+				at: <%= p.created_at %>
+			</div>
+			
+			<% if p.created_at.to_s != p.updated_at.to_s %>
+				<p class="text-right"><sup>
+					Last edit: <%= p.updated_at %></p>
+				</sup></p>
+			<% end %>
+		</div>
+	<% end %>
+
+	<!-- .gsub(/(?:\n\r?|\r\n?)/, '<br>') -->
+</div>

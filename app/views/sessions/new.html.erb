@@ -1,0 +1,28 @@
+<div class="form-wrapper form-backgound form-login">
+<h1>Login</h1>
+<h3 class="text-center">Please use username and password to sign in.</h3>
+
+
+<div class="errors">
+	<% if flash[:login_errors] %>
+		<% flash[:login_errors].each do |e| %>
+			<p> <%= e %> </p>
+		<% end %>
+	<% end %>
+</div>
+<%= form_for :session, url: { action: 'create' } do |s| %>
+<div class="text-center form-register">
+	<p>
+		<%= s.label :username %>
+		<%= s.text_field :username, :autofocus => true, placeholder: 'Username', class: "form-control top-form-field"  %>
+		<%= s.label :password %>
+		<%= s.password_field :password, placeholder: 'Password', class: "form-control bottom-form-field"  %>
+	</p>
+	<p>
+		<%= s.submit 'Sign in', class: "btn-anim btn-mid anim-span" %>
+	</p>
+</div>
+<% end %>
+
+
+</div>
