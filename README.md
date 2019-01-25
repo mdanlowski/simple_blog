@@ -5,3 +5,6 @@ Ruby on Rails Exercise (standalone repo)
 http://rails-blog-md.herokuapp.com/pages/about
 
 :gem: <- let's pretend it's red
+
+Copied from group rails repo:
+https://github.com/mdanlowski/rails
