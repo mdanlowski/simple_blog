@@ -7,4 +7,9 @@ class PagesController < ApplicationController
   	@header_text = "Get in Touch"
 
   end
+
+  def votes
+  	@all_votes = Vote.all
+  	
+  end
 end

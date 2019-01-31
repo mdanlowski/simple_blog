@@ -11,7 +11,12 @@ end
 gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record
 if not Gem.win_platform?
-  gem 'pg', '>= 0.18', '< 2.0'
+  group :development do
+    gem 'sqlite3'
+  end
+  group :production do
+    gem 'pg', '>= 0.18', '< 2.0'
+  end
 elsif Gem.win_platform?
   gem 'sqlite3'
 end

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  root 'posts#index'
+
   get 'pages/about'
   get 'pages/contact'
-  root 'posts#index'
+  get 'pages/votes'
   
   # get 'posts/index'
   # get 'posts/show'
