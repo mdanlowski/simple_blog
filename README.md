@@ -8,3 +8,8 @@ http://rails-blog-md.herokuapp.com/pages/about
 
 Copied from group rails repo:
 https://github.com/mdanlowski/rails
+
+
+## Changelog:
+- Heroku release
+- implementing a separate table to store users-votes records
